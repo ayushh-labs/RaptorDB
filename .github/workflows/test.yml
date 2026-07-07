@@ -30,17 +30,34 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check for Go files
+        id: check_files
+        run: |
+          if find . -name "*.go" -print -quit | grep -q .; then
+            echo "HAS_GO_FILES=true" >> $GITHUB_ENV
+          else
+            echo "HAS_GO_FILES=false" >> $GITHUB_ENV
+          fi
+
       - name: Set up Go
+        if: env.HAS_GO_FILES == 'true'
         uses: actions/setup-go@v5
         with:
           go-version: '1.23'
           cache: true
 
       - name: Install dependencies
+        if: env.HAS_GO_FILES == 'true'
         run: go mod download
 
       - name: Run tests with coverage
+        if: env.HAS_GO_FILES == 'true'
         run: go test -v -race -coverprofile=coverage.out ./...
 
       - name: Verify compilation
+        if: env.HAS_GO_FILES == 'true'
         run: go build ./...
+
+      - name: Skip run message
+        if: env.HAS_GO_FILES == 'false'
+        run: echo "No Go files found to build or test. Skipping steps."

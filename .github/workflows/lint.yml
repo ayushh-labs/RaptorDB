@@ -30,13 +30,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check for Go files
+        id: check_files
+        run: |
+          if find . -name "*.go" -print -quit | grep -q .; then
+            echo "HAS_GO_FILES=true" >> $GITHUB_ENV
+          else
+            echo "HAS_GO_FILES=false" >> $GITHUB_ENV
+          fi
+
       - name: Set up Go
+        if: env.HAS_GO_FILES == 'true'
         uses: actions/setup-go@v5
         with:
           go-version: '1.23'
           cache: true
 
       - name: Run golangci-lint
+        if: env.HAS_GO_FILES == 'true'
         uses: golangci/golangci-lint-action@v6
         with:
           version: v1.60
