@@ -71,6 +71,44 @@ RaptorDB/
   - Custom client/server wire protocol
   - Interactive CLI shell and drivers
 
+## Development Setup
+
+To configure your local environment for RaptorDB development, ensure you have Go 1.23+ and make installed.
+
+### Makefile Commands
+
+A complete suite of make commands is available for development tasks:
+
+```bash
+# Format the source code
+make fmt
+
+# Run all static analyses and linters
+make lint
+
+# Run all unit tests with race detection and coverage output
+make test
+
+# Verify code builds successfully
+make build
+
+# Clean build artifacts
+make clean
+```
+
+### Git Hooks
+
+This repository uses [pre-commit](https://pre-commit.com/) to automatically check formatting and linting on every commit. To install the pre-commit hook locally:
+
+```bash
+pre-commit install
+```
+
+## Contributing
+
+We welcome contributions to RaptorDB! Please review our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on our branching strategies, developer workflows, and the **Conventional Commits** specification that we enforce for all pull requests.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+

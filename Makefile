@@ -1,19 +1,22 @@
 .PHONY: fmt lint test build run clean
 
 fmt:
-	@echo "fmt: Not implemented"
+	go fmt ./...
 
 lint:
-	@echo "lint: Not implemented"
+	golangci-lint run
 
 test:
-	@echo "test: Not implemented"
+	go test -v -race -coverprofile=coverage.out ./...
 
 build:
-	@echo "build: Not implemented"
+	go build ./...
 
 run:
-	@echo "run: Not implemented"
+	@echo "RaptorDB has no application entrypoint (main package) implemented yet."
+	@echo "Use 'make build' to verify compilation of all packages."
 
 clean:
-	@echo "clean: Not implemented"
+	go clean
+	rm -f coverage.out
+
