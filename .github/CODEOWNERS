@@ -1,0 +1,19 @@
+# This file defines the owners of paths in the repository.
+# For more information see: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-codeowners
+
+# Each line is a pattern followed by one or more owners.
+# Owners can be @username, @org/team-name, or email address.
+
+# By default, everything is owned by the Patel Labs core team
+*       @patel-labs/core-maintainers
+
+# Documentation ownership
+/docs/                      @patel-labs/documentation-team
+*.md                        @patel-labs/documentation-team
+
+# Build & CI configurations ownership
+/Makefile                   @patel-labs/devops-team
+/Dockerfile                 @patel-labs/devops-team
+/.github/workflows/         @patel-labs/devops-team
+/.golangci.yml              @patel-labs/devops-team
+/.pre-commit-config.yaml    @patel-labs/devops-team
